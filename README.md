@@ -1,6 +1,3 @@
-# backup-helper
-An app to do my Ubuntu backup &amp; upgrade.
-
 # Backup Helper
 ## How it (will probably) work:
 - Pick a number of files/folders to zip up (tar and gzip, 7zip, rar, etc.)
