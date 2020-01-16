@@ -1,30 +1,32 @@
 {
-  "name": "minimal-music-player",
-  "version": "1.0.0",
-  "description": "Minimalist music player",
+  "name": "ubuntu-backup-helper",
+  "version": "0.0.1",
+  "description": "Backup the system in a few clicks.",
   "main": "main.js",
+  "dependencies": {
+    "electron-builder": "^22.2.0"
+  },
+  "devDependencies": {
+    "electron": "^7.1.9"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "build": {
-    "appId": "Minimal Music Player",
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ]
-    },
-    "win": {
-      "target": "NSIS"
-    }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tghgg/backup-helper.git"
   },
+  "keywords": [
+    "ubuntu",
+    "backup",
+    "helper",
+    "electron",
+    "nodejs"
+  ],
   "author": "Choppa2",
   "license": "MIT",
-  "devDependencies": {
-    "electron": "^7.1.9",
-    "electron-builder": "^22.2.0"
-  }
+  "bugs": {
+    "url": "https://github.com/tghgg/backup-helper/issues"
+  },
+  "homepage": "https://github.com/tghgg/backup-helper#readme"
 }

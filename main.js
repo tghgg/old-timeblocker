@@ -6,20 +6,13 @@ let mainWindow;
 let menu; 
 
 let init_menu = [
-	// Show play history and allow user to play a past song
-	{
-		label: 'History',
-		id: 'history',
-		submenu: []
-	},
-
 	// About box
 	{
 		label: 'About',
 		click: (menuItem, window, event) => {
 			dialog.showMessageBox({
 				title: 'About',
-				message: 'Minimal music player by Choppa2\nNode.js version: ' + process.versions.node + '; Electron version: ' + process.versions.electron + '.',
+				message: 'Ubuntu Backup Helper by Choppa2\nNode.js version: ' + process.versions.node + '; Electron version: ' + process.versions.electron + '.',
 				buttons: ['Close']
 			});
 		}
@@ -38,8 +31,8 @@ app.on('ready', () => {
 	Menu.setApplicationMenu(menu);
 	mainWindow = new BrowserWindow(
 		{
-			width: 500,
-			height: 300,
+			width: 600,
+			height: 400,
 			show: true,
 			webPreferences: {nodeIntegration: true},
 			enableRemoteModule: false
