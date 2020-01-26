@@ -3,68 +3,55 @@ const { app, BrowserWindow, ipcMain, dialog, Menu, MenuItem } = require('electro
 // Declare app's windows
 let mainWindow;
 
-let menu; 
+let menu;
 
-let init_menu = [
-	// About box
-	{
-		label: 'About',
-		click: (menuItem, window, event) => {
-			dialog.showMessageBox({
-				title: 'About',
-				message: 'Ubuntu Backup Helper by Choppa2\nNode.js version: ' + process.versions.node + '; Electron version: ' + process.versions.electron + '.',
-				buttons: ['Close']
-			});
-		}
-	}, 
-	
-	// Quit
-	{
-		label: 'Quit',
-		role: 'quit'
-	}
+const init_menu = [
+  // About box
+  {
+    label: 'About',
+    click: (menuItem, window, event) => {
+      dialog.showMessageBox({
+        title: 'About',
+        message: 'Timeblocker by Choppa2\nNode.js version: ' + process.versions.node + '; Electron version: ' + process.versions.electron + '.',
+        buttons: ['Close']
+      });
+    }
+  },
+
+  {
+	  label: 'Dev Tools',
+	  role: 'toggleDevTools'
+  },
+
+  // Quit
+  {
+    label: 'Quit',
+    role: 'quit'
+  }
 ];
 
 // Create main window
 app.on('ready', () => {
-	menu = Menu.buildFromTemplate(init_menu);
-	Menu.setApplicationMenu(menu);
-	mainWindow = new BrowserWindow(
-		{
-			width: 600,
-			height: 400,
-			show: true,
-			webPreferences: {nodeIntegration: true},
-			enableRemoteModule: false
-		}
-	); 
-	mainWindow.loadFile(__dirname + '/index.html');
-	//mainWindow.webContents.openDevTools();
+  menu = Menu.buildFromTemplate(init_menu);
+  Menu.setApplicationMenu(menu);
+  mainWindow = new BrowserWindow(
+    {
+      width: 600,
+      height: 400,
+      show: true,
+      webPreferences: { nodeIntegration: true },
+      enableRemoteModule: false
+    }
+  );
+
+  mainWindow.loadFile(__dirname + '/index.html');
+  // mainWindow.webContents.openDevTools();
 });
 
-// Open a file picker dialog
-ipcMain.on('pick_file', (event, data) => {
-	dialog.showOpenDialog({
-		properties: ['openFile']
-	}).then((file_object) => {
-		// Add song to history
-		menu.getMenuItemById('history').submenu.append(new MenuItem(
-			{
-				label: file_object.filePaths[0].split('/')[file_object.filePaths[0].split('/').length-1],
-				click: (menuItem, window, event) => {
-					// Play the song
-					mainWindow.webContents.send('selected_files', file_object.filePaths);		
-				}
-			}
-		));
-		// Send back the selected files to the renderer process
-		event.reply('selected_files', file_object.filePaths);
-	}, (err) => {
-		dialog.showMessageBox({
-			title: 'Error',
-			message: 'Failed to pick file due to ' + err + '.',
-			buttons: ['Close']
-		});
-		console.log("Failed to pick file due to: " + err);
-	});
+// Time block creator dialog
+ipcMain.on('create-block', (input) => {
+  dialog.showMessageBox(mainWindow, {
+    message: "Block created.",
+    buttons: ['OK nibba']
+  });
 });

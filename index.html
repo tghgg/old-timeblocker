@@ -2,20 +2,33 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Ubuntu Backup Helper</title>
+    <title>Timeblocker</title>
     <link rel="stylesheet" type="text/css" href="index.css"/>
   </head>
   <body>
     <div class="nav">
-      <h1 id='playing'>Backup Your Ubuntu System<h1>
+      <h1>Today's Time Blocks<h1>
     </div>
     <div class="main">  
-      <form>
-        <label for='filepicker'>
-          <button id="filepicker" type>Start Backup</button>
-        </label>
-      </form>
+      <div>
+        <form id='create_block'>
+          <label for='block_name'>Start a block!</label>
+          <br>
+          <input type='text' id='block_name' placeholder="Create a block" required></input>
+          <input type='text' id='block_time' placeholder="Specify a time period"></input>
+          <br>
+          <input type='submit'>Create Block</input>
+        </form>
+      </div>
+      <hr>
+      <li id='block_list'>
+        <pre>This is a block | 10:00AM - 12:00PM</pre>
+      </li>
     </div>
   </body>
   <script src='./renderer.js'></script>
+  <!-- Vue.js development version-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- Vue.js production version-->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 </html>
