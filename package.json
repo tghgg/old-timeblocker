@@ -1,7 +1,7 @@
 {
-  "name": "ubuntu-backup-helper",
+  "name": "timeblocker",
   "version": "0.0.1",
-  "description": "Backup the system in a few clicks.",
+  "description": "A timeblock app.",
   "main": "main.js",
   "dependencies": {
     "electron-builder": "^22.2.0"
@@ -10,16 +10,16 @@
     "electron": "^7.1.9"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tghgg/backup-helper.git"
   },
   "keywords": [
-    "ubuntu",
-    "backup",
-    "helper",
+    "timeblock",
+    "productivity",
     "electron",
     "nodejs"
   ],
