@@ -1,7 +1,4 @@
 # Backup Helper
-An Electron app to upgrade my Ubuntu system.
-## How it (will probably) work:
-- [] Pick a number of files/folders to zip up (tar and gzip, 7zip, rar, etc.)
-- [] Send it to Google Drive
-- [] Create a timeshift snapshot of my system
-- [] Check for updates and upgrade the Ubuntu system
+Set tasks with specific start and end time. Based on a unique scheduling approach called **timeblocking**.
+
+[A quick overview of timeblocking by Cal Newport.](https://www.calnewport.com/blog/2013/12/21/deep-habits-the-importance-of-planning-every-minute-of-your-work-day/)
