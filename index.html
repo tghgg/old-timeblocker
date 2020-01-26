@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="index.css"/>
   </head>
   <body>
-    <div class="nav">
-      <h1>Today's Time Blocks<h1>
+    <div id='header'>
+      {{ message }}
     </div>
     <div class="main">  
       <div>
@@ -15,7 +15,9 @@
           <label for='block_name'>Start a block!</label>
           <br>
           <input type='text' id='block_name' placeholder="Create a block" required></input>
-          <input type='text' id='block_time' placeholder="Specify a time period"></input>
+          <input type='datetime-local' id='block_time_start' placeholder="Specify a start"></input>
+          <input type='datetime-local' id='block_time_end' placeholder="Specify an end time"></input>
+          
           <br>
           <input type='submit'>Create Block</input>
         </form>

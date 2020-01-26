@@ -23,6 +23,12 @@ const init_menu = [
 	  role: 'toggleDevTools'
   },
 
+  // Hard reload
+  {
+    label: 'Reload Page',
+    role: 'forceReload'
+  },
+
   // Quit
   {
     label: 'Quit',
