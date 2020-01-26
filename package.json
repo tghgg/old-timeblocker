@@ -1,13 +1,14 @@
 {
   "name": "timeblocker",
-  "version": "v0.1-alpha",
+  "version": "0.0.1",
   "description": "A timeblock app.",
   "main": "main.js",
   "dependencies": {
     "electron-builder": "^22.2.0"
   },
   "devDependencies": {
-    "electron": "^7.1.9"
+    "electron": "^7.1.9",
+    "semistandard": "^14.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
