@@ -1,6 +1,6 @@
 {
   "name": "timeblocker",
-  "version": "0.0.1",
+  "version": "v0.1-alpha",
   "description": "A timeblock app.",
   "main": "main.js",
   "dependencies": {
@@ -26,7 +26,7 @@
   "author": "Choppa2",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tghgg/backup-helper/issues"
+    "url": "https://github.com/tghgg/timeblocker/issues"
   },
-  "homepage": "https://github.com/tghgg/backup-helper#readme"
+  "homepage": "https://github.com/tghgg/timeblocker"
 }
