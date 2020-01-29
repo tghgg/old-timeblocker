@@ -1,6 +1,6 @@
 // Getting the ipc and remote
 // Allows this file to communicate with main.js and run main processes from this renderer
-import { ipcRenderer } from 'electron';
+const { ipcRenderer } = require('electron');
 
 // Open a block creator
 document.querySelector('form').addEventListener('submit', (event) => {
