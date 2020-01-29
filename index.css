@@ -7,6 +7,10 @@ label {
   color: white;
 }
 
+li {
+  color: white;
+}
+
 body {
   text-align: center;
   font-family: monospace;
@@ -30,3 +34,6 @@ pre {
   background-position: center;
 }
 
+.header {
+  color: white;
+}

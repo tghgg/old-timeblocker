@@ -12,16 +12,18 @@
   </head>
   <body>
     <div id='header'>
-      {{ message }}
+      <h1>
+        {{ message }}
+      </h1>
     </div>
     <div class="main">  
-      <div>
-        <form id='create_block'>
+      <div id='create_block'>
+        <form v-on:submit='create_block'>
           <label for='block_name'>Start a block!</label>
           <br>
-          <input type='text' id='block_name' placeholder="Create a block" required></input>
-          <input type='datetime-local' id='block_time_start' placeholder="Specify a start"></input>
-          <input type='datetime-local' id='block_time_end' placeholder="Specify an end time"></input>
+          <input type='text' id='block_name' placeholder="Create a block" required ></input>
+          <input type='text' id='block_time_start' placeholder="Specify a start"></input>
+          <input type='text' id='block_time_end' placeholder="Specify an end time"></input>
           <br>
           <input type='submit'>Create Block</input>
         </form>
@@ -34,6 +36,7 @@
       </div>
     </div>
     <script>
+      // Seems to be pretty containerized
       var app = new Vue({
         el: '#header',
         data: {
@@ -50,6 +53,32 @@
           ]
         }
       });
+      var create_block = new Vue({
+        el: '#create_block',
+        methods: {
+          create_block: (event) => {
+            event.preventDefault();
+            // Add block to block list
+            let block = {
+              name: document.querySelector('#block_name').value,
+              time: {
+                start: document.querySelector('#block_time_start').value,
+                end: document.querySelector('#block_time_end').value
+              }
+            };
+            console.log('New block with the name: ' + block.name + ' and the time period: ' + block.time);
+            console.log(block_list.blocks + ' are the current blocks.');
+            if (block.time.start || block.time.end) {
+              block_list.blocks.push(block.name + ' | ' + block.time.start + ' - ' + block.time.end);
+            } else {
+              block_list.blocks.push(block.name);
+            }
+            console.log(block_list.blocks + ' are the new blocks.');
+            // Clear block input field
+            document.getElementsByTagName('input').value = '';
+        }
+      }
+    });
     </script>
   </body>
 </html>
