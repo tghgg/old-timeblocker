@@ -5,15 +5,16 @@ import { ipcRenderer } from 'electron';
 // Open a block creator
 document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault();
-  let block_name = document.querySelector('#block_name').value;
-  let block_time = document.querySelector('#block_time').value;
-  console.log('New block with the name: ' + block_name + ' and the time period: ' + block_time);
+  let block = {
+    name: document.querySelector('#block_name').value,
+    time: document.querySelector('#block_time').value
+  };
+  console.log('New block with the name: ' + block.name + ' and the time period: ' + block.time);
   let new_block = document.createElement("pre");
-  console.log(block_time);
-  if (block_time.length) {
-    new_block.textContent = block_name + '|' + block_time;
+  if (block.time.length) {
+    new_block.textContent = block.name + '|' + block.time;
   } else {
-    new_block.textContent = block_name;
+    new_block.textContent = block.name;
   }
   document.querySelector('#block_list').appendChild(new_block);
 });

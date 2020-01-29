@@ -27,8 +27,8 @@
         </form>
       </div>
       <hr>
-      <li id='block_list'>
-        <pre>This is a block | 10:00AM - 12:00PM</pre>
+      <li id='block_list' v-for="block in blocks">
+        {{ block }}
       </li>
     </div>
     <script>
@@ -36,6 +36,16 @@
         el: '#header',
         data: {
           message: "Rendered with Vue.js"
+        }
+      });
+      var block_list = new Vue({
+        el: '#block_list',
+        data: {
+          blocks: [
+            'This is a block | 10:00AM - 12:00PM',
+            'This is also a block',
+            'Nice'
+          ]
         }
       });
     </script>
