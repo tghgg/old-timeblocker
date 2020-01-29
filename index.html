@@ -27,9 +27,11 @@
         </form>
       </div>
       <hr>
-      <li id='block_list' v-for="block in blocks">
-        {{ block }}
-      </li>
+      <div id="block_list">
+        <li v-for="block in blocks">
+          {{ block }}
+        </li>
+      </div>
     </div>
     <script>
       var app = new Vue({

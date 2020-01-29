@@ -3,7 +3,7 @@
 const { ipcRenderer } = require('electron');
 
 // Open a block creator
-document.querySelector('form').addEventListener('submit', (event) => {
+/* document.querySelector('#create_block').addEventListener('submit', (event) => {
   event.preventDefault();
   let block = {
     name: document.querySelector('#block_name').value,
@@ -17,4 +17,4 @@ document.querySelector('form').addEventListener('submit', (event) => {
     new_block.textContent = block.name;
   }
   document.querySelector('#block_list').appendChild(new_block);
-});
+}); */
