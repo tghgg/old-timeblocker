@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Timeblocker</title>
     <link rel="stylesheet" type="text/css" href="index.css"/>
+    <!-- Vue.js development version-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Vue.js production version-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src='./renderer.js'></script>
   </head>
   <body>
     <div id='header'>
@@ -17,7 +22,6 @@
           <input type='text' id='block_name' placeholder="Create a block" required></input>
           <input type='datetime-local' id='block_time_start' placeholder="Specify a start"></input>
           <input type='datetime-local' id='block_time_end' placeholder="Specify an end time"></input>
-          
           <br>
           <input type='submit'>Create Block</input>
         </form>
@@ -27,10 +31,13 @@
         <pre>This is a block | 10:00AM - 12:00PM</pre>
       </li>
     </div>
+    <script>
+      var app = new Vue({
+        el: '#header',
+        data: {
+          message: "Rendered with Vue.js"
+        }
+      });
+    </script>
   </body>
-  <script src='./renderer.js'></script>
-  <!-- Vue.js development version-->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <!-- Vue.js production version-->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 </html>

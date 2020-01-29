@@ -1,13 +1,6 @@
 // Getting the ipc and remote
 // Allows this file to communicate with main.js and run main processes from this renderer
-const { ipcRenderer } = require('electron');
-
-var app = new Vue({
-  el: '#header',
-  data: {
-    message: 'Rendered with Vue.js'
-  }
-});
+import { ipcRenderer } from 'electron';
 
 // Open a block creator
 document.querySelector('form').addEventListener('submit', (event) => {

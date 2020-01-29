@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, Menu, MenuItem } = require('electron');
+import { app, BrowserWindow, ipcMain, dialog, Menu, MenuItem } from 'electron';
 
 // Declare app's windows
 let mainWindow;
