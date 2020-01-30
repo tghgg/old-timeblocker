@@ -38,7 +38,7 @@ pre {
   top: 0; /* Stay at the top */
   left: 0;
   background-color: #111; /* Black */
-  margin-top: -10px; margin-bottom: 0px;
+  margin-top: 0px; margin-bottom: 0px;
   overflow-x: hidden; /* Disable horizontal scroll */
 }
 

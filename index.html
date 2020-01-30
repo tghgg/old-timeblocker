@@ -25,17 +25,18 @@
           <input type='text' id='block_time_start' placeholder="Specify a start"></input>
           <input type='text' id='block_time_end' placeholder="Specify an end time"></input>
           <br>
-          <input type='submit'>Create Block</input>
+          <input type='submit' placeholder='Create Block'></input>
         </form>
       </div>
       <hr>
       <div id="block_list">
-        <li v-for="block in blocks">
+        <li v-for="block in blocks" v-on:click="show_block($event, blocks[blocks.indexOf(block)])">
           {{ block }}
         </li>
       </div>
     </div>
     <script>
+      const { ipcRenderer } = require('electron');
       // Seems to be pretty containerized
       var app = new Vue({
         el: '#header',
@@ -51,6 +52,15 @@
             'This is also a block',
             'Nice'
           ]
+        },
+        methods: {
+          // Show a block's info
+          show_block: (event, input) => {
+            event.preventDefault();
+            console.log(input + ' is the block to be shown.');
+            // Tell the main process to show a dialog box containing the box's info
+            ipcRenderer.send('show_block', input);
+          }
         }
       });
       var create_block = new Vue({

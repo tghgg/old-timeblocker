@@ -1,5 +1,8 @@
 const { app, BrowserWindow, ipcMain, dialog, Menu, MenuItem } = require('electron');
 
+const path = require('path');
+const process = require('process');
+
 // Declare app's windows
 let mainWindow;
 
@@ -42,22 +45,22 @@ app.on('ready', () => {
   Menu.setApplicationMenu(menu);
   mainWindow = new BrowserWindow(
     {
-      width: 600,
-      height: 400,
+      width: 800,
+      height: 600,
       show: true,
       webPreferences: { nodeIntegration: true },
       enableRemoteModule: false
     }
   );
 
-  mainWindow.loadFile(__dirname + '/index.html');
+  mainWindow.loadFile(path.join(__dirname, '/index.html'));
   // mainWindow.webContents.openDevTools();
 });
 
 // Time block creator dialog
-ipcMain.on('create-block', (input) => {
+ipcMain.on('show_block', (input) => {
   dialog.showMessageBox(mainWindow, {
-    message: "Block created.",
-    buttons: ['OK nibba']
+    message: 'Block Name: ' + input,
+    buttons: ['OK']
   });
 });
