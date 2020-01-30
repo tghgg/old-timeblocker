@@ -67,11 +67,11 @@ ipcMain.on('show_block', (event, input) => {
     buttons: ['OK', 'Delete', 'Edit']
   }).then((response) => {
     console.log(response.response + ' was the index of the button clicked.');
-    switch(response.response) {
+    switch (response.response) {
       case 0:
         console.log('Close block info box.');
         break;
-      case 1: 
+      case 1:
         // Send back to info of the about-to-be-deleted block
         mainWindow.webContents.send('delete_block', input);
         console.log('Delete this block');
@@ -87,6 +87,6 @@ ipcMain.on('show_block', (event, input) => {
     }
   }, (err) => {
     console.log(err);
-    console.log("Error retrieving a response from the block info dialog box!");
+    console.log('Error retrieving a response from the block info dialog box!');
   });
 });

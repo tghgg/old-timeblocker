@@ -12,7 +12,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "semistandard": "semistandard",
+    "fix": "semistandard --fix"
   },
   "repository": {
     "type": "git",
