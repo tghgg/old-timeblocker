@@ -4,31 +4,110 @@
     <meta charset="UTF-8">
     <title>Timeblocker</title>
     <link rel="stylesheet" type="text/css" href="index.css"/>
+    <!-- Vue.js development version-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Vue.js production version-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
   </head>
   <body>
-    <div class="nav">
-      <h1>Today's Time Blocks<h1>
+    <div class='sidenav' id='header'>
+      <h1>
+        Timeblocker
+      </h1>
+      <hr>
+      <!-- List the hours in the sidebar -->
+      <div id='hours_list'>
+        <ul v-for='hour in hours'>{{ hour }}</ul>
+      </div>
     </div>
     <div class="main">  
-      <div>
-        <form id='create_block'>
+      <div id='create_block'>
+        <form v-on:submit='create_block'>
           <label for='block_name'>Start a block!</label>
           <br>
-          <input type='text' id='block_name' placeholder="Create a block" required></input>
-          <input type='text' id='block_time' placeholder="Specify a time period"></input>
+          <input type='text' id='block_name' placeholder="Create a block" required ></input>
+          <input type='text' id='block_time_start' placeholder="Specify a start"></input>
+          <input type='text' id='block_time_end' placeholder="Specify an end time"></input>
           <br>
-          <input type='submit'>Create Block</input>
+          <input type='submit' placeholder='Create Block'></input>
         </form>
       </div>
       <hr>
-      <li id='block_list'>
-        <pre>This is a block | 10:00AM - 12:00PM</pre>
-      </li>
+      <div id="block_list">
+        <li v-for="block in blocks" v-on:click="show_block($event, blocks[blocks.indexOf(block)])">
+          {{ block }}
+        </li>
+      </div>
     </div>
+    <script>
+      const { ipcRenderer } = require('electron');
+      // Seems to be pretty containerized
+      // List the hours on the sidebar 
+      var hours_list = new Vue({
+        el: '#hours_list',
+        data: {
+          hours: []
+        }
+      });
+      for (i=0;i<25;i++) {
+        hours_list.hours.push(i.toString());
+      }
+      // List the blocks created
+      var block_list = new Vue({
+        el: '#block_list',
+        data: {
+          blocks: [
+            'Inbox Zero | 10:00AM - 12:00PM',
+            'Draft for new scene',
+          ]
+        },
+        methods: {
+          // Show a block's info
+          show_block: (event, input) => {
+            event.preventDefault();
+            console.log(typeof(input) + ' is the type.');
+            console.log(input + ' is the block to be shown.');
+            // Tell the main process to show a dialog box containing the box's info
+            ipcRenderer.send('show_block', input);
+          }
+        }
+      });
+      // Handler for creating new blocks
+      var create_block = new Vue({
+        el: '#create_block',
+        methods: {
+          create_block: (event) => {
+            event.preventDefault();
+            // Add block to block list
+            let block = {
+              name: document.querySelector('#block_name').value,
+              time: {
+                start: document.querySelector('#block_time_start').value,
+                end: document.querySelector('#block_time_end').value
+              }
+            };
+            console.log('New block with the name: ' + block.name + ' and the time period: ' + block.time);
+            console.log(block_list.blocks + ' are the current blocks.');
+            if (block.time.start || block.time.end) {
+              block_list.blocks.push(block.name + ' | ' + block.time.start + ' - ' + block.time.end);
+            } else {
+              block_list.blocks.push(block.name);
+            }
+            console.log(block_list.blocks + ' are the new blocks.');
+            // Clear block input field
+            document.getElementsByTagName('input').value = '';
+        }
+      }
+      });
+      // Main process signals handlers
+      ipcRenderer.on('delete_block', (event, input) => {
+        console.log(input + ' to be deleted.');
+        block_list.blocks.splice(block_list.blocks.indexOf(input), 1);
+        console.log('New block list: ' + block_list.blocks);
+      });
+      ipcRenderer.on('edit_block', (event, input) => {
+        console.log(input + ' to be edited.');
+      })
+    </script>
   </body>
-  <script src='./renderer.js'></script>
-  <!-- Vue.js development version-->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <!-- Vue.js production version-->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 </html>

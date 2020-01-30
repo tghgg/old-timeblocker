@@ -1,14 +1,27 @@
 h1 {
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 label {
   color: white;
+  font-size: 3rem;
+}
+
+ul {
+  color: white;
+  text-align: center;
+  margin-left: -37px;
+}
+
+li {
+  color: white;
+  font-size: 2rem;
+  background-color: turquoise;
+  margin-bottom: 10px; margin-top: 0px;
 }
 
 body {
-  text-align: center;
   font-family: monospace;
   background-color: black;
   text-decoration: white;
@@ -23,10 +36,21 @@ pre {
   color: white;
 }
 
-.nav {
- /* background-image: url('resources/jarjit.png');
- */
-  background-size: cover;
-  background-position: center;
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 210px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black */
+  margin-top: 0px; margin-bottom: 0px;
+  overflow: hidden; /* Disable horizontal scroll */
+  text-align: center;
 }
 
+.main {
+  text-align: center;
+  margin-left: 210px;
+  padding: 0px 10px;
+}
