@@ -12,8 +12,13 @@
   <body>
     <div class='sidenav' id='header'>
       <h1>
-        {{ message }}
+        Timeblocker
       </h1>
+      <hr>
+      <!-- List the hours in the sidebar -->
+      <div id='hours_list'>
+        <ul v-for='hour in hours'>{{ hour }}</ul>
+      </div>
     </div>
     <div class="main">  
       <div id='create_block'>
@@ -37,19 +42,23 @@
     <script>
       const { ipcRenderer } = require('electron');
       // Seems to be pretty containerized
-      var app = new Vue({
-        el: '#header',
+      // List the hours on the sidebar 
+      var hours_list = new Vue({
+        el: '#hours_list',
         data: {
-          message: "Time\nblocker"
+          hours: []
         }
       });
+      for (i=0;i<25;i++) {
+        hours_list.hours.push(i.toString());
+      }
+      // List the blocks created
       var block_list = new Vue({
         el: '#block_list',
         data: {
           blocks: [
-            'This is a block | 10:00AM - 12:00PM',
-            'This is also a block',
-            'Nice'
+            'Inbox Zero | 10:00AM - 12:00PM',
+            'Draft for new scene',
           ]
         },
         methods: {
@@ -63,6 +72,7 @@
           }
         }
       });
+      // Handler for creating new blocks
       var create_block = new Vue({
         el: '#create_block',
         methods: {
