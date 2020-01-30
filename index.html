@@ -8,7 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- Vue.js production version-->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
-    <script src='./renderer.js'></script>
   </head>
   <body>
     <div class='sidenav' id='header'>
@@ -41,7 +40,7 @@
       var app = new Vue({
         el: '#header',
         data: {
-          message: "Rendered with Vue.js"
+          message: "Time\nblocker"
         }
       });
       var block_list = new Vue({
@@ -57,6 +56,7 @@
           // Show a block's info
           show_block: (event, input) => {
             event.preventDefault();
+            console.log(typeof(input) + ' is the type.');
             console.log(input + ' is the block to be shown.');
             // Tell the main process to show a dialog box containing the box's info
             ipcRenderer.send('show_block', input);
@@ -89,6 +89,15 @@
         }
       }
       });
+      // Main process signals handlers
+      ipcRenderer.on('delete_block', (event, input) => {
+        console.log(input + ' to be deleted.');
+        block_list.blocks.splice(block_list.blocks.indexOf(input), 1);
+        console.log('New block list: ' + block_list.blocks);
+      });
+      ipcRenderer.on('edit_block', (event, input) => {
+        console.log(input + ' to be edited.');
+      })
     </script>
   </body>
 </html>
