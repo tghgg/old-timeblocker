@@ -26,8 +26,8 @@
           <label for='block_name'>Start a block!</label>
           <br>
           <input type='text' id='block_name' placeholder="Create a block" required ></input>
-          <input type='text' id='block_time_start' placeholder="Specify a start"></input>
-          <input type='text' id='block_time_end' placeholder="Specify an end time"></input>
+          <input type='time' id='block_time_start' placeholder="Specify a start"></input>
+          <input type='time' id='block_time_end' placeholder="Specify an end time"></input>
           <br>
           <input type='submit' placeholder='Create Block'></input>
         </form>
@@ -38,6 +38,9 @@
           {{ block }}
         </li>
       </div>
+    </div>
+    <div id='footer'>
+      <footer>{{ current_time }}</footer>
     </div>
     <script>
       const { ipcRenderer } = require('electron');
@@ -98,6 +101,13 @@
             document.getElementsByTagName('input').value = '';
         }
       }
+      });
+      // Footer showing current time
+      var footer = new Vue({
+        el: '#footer',
+        data: {
+          current_time: `${new Date().getHours()}:${new Date().getMinutes()}` 
+        }
       });
       // Main process signals handlers
       ipcRenderer.on('delete_block', (event, input) => {
