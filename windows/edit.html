@@ -10,10 +10,24 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
   </head>
   <body>
+    <div class='header'>
+      <h1>Edit Block</h1>
+    </div>
     <div class='main'>
-      <h1>Edit a Block</h1>
-      <hr>
-      <footer>Node.js</footer>
+      <form>
+        <label for='edit_block'>Current name {{ block_name }}</label>
+        <input type='text' id='edit_block'></input>
+      </form>
     </div>
   </body>
+  <script>
+    console.log(this.block_to_edit);
+    console.log('Edit block window is opened.');
+    var block_name = new Vue({
+      el: '.main',
+      data: {
+        block_name: this.block_to_edit
+      }
+    });
+  </script>
 </html>
