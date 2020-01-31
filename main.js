@@ -29,7 +29,8 @@ const init_menu = [
   // Hard reload
   {
     label: 'Reload Page',
-    role: 'forceReload'
+    role: 'forceReload',
+    accelerator: 'CommandOrControl+Shift+S'
   },
 
   // Quit
