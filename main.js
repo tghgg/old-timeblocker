@@ -68,9 +68,10 @@ ipcMain.on('show_block', (event, input) => {
     buttons: ['OK', 'Delete', 'Edit']
   }).then((response) => {
     console.log(response.response + ' was the index of the button clicked.');
+    // Use whatever button the user clicked on
     switch (response.response) {
       case 0:
-        console.log('Close block info box.');
+        console.log('Close block info box without doing anything.');
         break;
       case 1:
         // Send back to info of the about-to-be-deleted block
@@ -78,14 +79,15 @@ ipcMain.on('show_block', (event, input) => {
         console.log('Delete this block');
         break;
       case 2:
-        // Send back to info of the about-to-be-edited block
+        // Show edit block dialog box
         editWindow = new BrowserWindow({
           width: 400,
           height: 300,
           resizable: false,
-          enableRemoteModule: false
+          enableRemoteModule: false,
+          block_to_edit: input
         });
-        editWindow.loadFile(path.join(__dirname, '/windows/edit.html'));
+        editWindow.loadFile(path.join(__dirname, '/windows/edit.html')); 
         console.log('Edit this block.');
         break;
       default:

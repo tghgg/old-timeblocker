@@ -33,6 +33,7 @@
       </div>
       <hr>
       <div id="block_list">
+        <!-- Show block's info when clicked on -->
         <li v-for="block in blocks" v-on:click="show_block($event, blocks[blocks.indexOf(block)])">
           {{ block }}
         </li>
@@ -67,7 +68,6 @@
           // Show a block's info
           show_block: (event, input) => {
             event.preventDefault();
-            console.log(typeof(input) + ' is the type.');
             console.log(input + ' is the block to be shown.');
             // Tell the main process to show a dialog box containing the box's info
             ipcRenderer.send('show_block', input);
@@ -110,11 +110,11 @@
         methods: {
           update_current_time: () => {
             console.log('Update current time.');
-            console.log;
             footer.current_time = `${new Date().getHours()}:${new Date().getMinutes()}`;
           }
         }
       });
+      // Update footer every minute
       setInterval(footer.update_current_time, 60000);
       // Main process signals handlers
       ipcRenderer.on('delete_block', (event, input) => {
@@ -124,7 +124,9 @@
       });
       ipcRenderer.on('edit_block', (event, input) => {
         console.log(input + ' to be edited.');
-      })
+        // prompt() is not supported by Electron as it is synchronous and therefore blocking
+        // have to find another way to get quick input
+      });
     </script>
   </body>
 </html>
