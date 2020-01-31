@@ -10,11 +10,10 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
   </head>
   <body>
-    <div class='sidenav' id='header'>
-      <h1>
-        Timeblocker
-      </h1>
-      <hr>
+    <div class='header'>
+      <h1>TIMEBLOCKER</h1>
+    </div>
+    <div class='sidenav'>
       <!-- List the hours in the sidebar -->
       <div id='hours_list'>
         <ul v-for='hour in hours'>{{ hour }}</ul>
@@ -107,8 +106,16 @@
         el: '#footer',
         data: {
           current_time: `${new Date().getHours()}:${new Date().getMinutes()}` 
+        },
+        methods: {
+          update_current_time: () => {
+            console.log('Update current time.');
+            console.log;
+            footer.current_time = `${new Date().getHours()}:${new Date().getMinutes()}`;
+          }
         }
       });
+      setInterval(footer.update_current_time, 60000);
       // Main process signals handlers
       ipcRenderer.on('delete_block', (event, input) => {
         console.log(input + ' to be deleted.');
