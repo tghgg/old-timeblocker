@@ -4,7 +4,7 @@ const path = require('path');
 const process = require('process');
 
 // Declare app's windows
-let mainWindow;
+let mainWindow, editWindow;
 
 let menu;
 
@@ -35,7 +35,7 @@ const init_menu = [
   // Quit
   {
     label: 'Quit',
-    role: 'quit'
+    role: 'close'
   }
 ];
 
@@ -78,7 +78,13 @@ ipcMain.on('show_block', (event, input) => {
         break;
       case 2:
         // Send back to info of the about-to-be-edited block
-        mainWindow.webContents.send('edit_block', input);
+        editWindow = new BrowserWindow({
+          width: 400,
+          height: 300,
+          resizable: false,
+          enableRemoteModule: false
+        });
+        editWindow.loadFile(path.join(__dirname, '/windows/edit.html'));
         console.log('Edit this block.');
         break;
       default:
